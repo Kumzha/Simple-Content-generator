@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Content Generator</h2>
+        
+        <!-- Input Text Field -->
+        <div class="form-group">
+            <label for="inputText">Input idea to generate content about</label>
+            <input type="text" class="form-control" id="inputText" placeholder="Enter input text here">
+        </div>
+
+        <!-- Button below Input Text Field -->
+        <button type="button" class="btn btn-primary mb-3" onclick="submitIdea()">Submit</button>
+
+        <!-- First Output Input Text Field -->
+        <div class="form-group">
+            <label for="outputInputText">Content Input</label>
+            <textarea class="form-control" id="outputInputText" placeholder="Input content to analyse" rows="4"></textarea>
+        </div>
+
+        <!-- Button below First Output Input Text Field -->
+        <button type="button" class="btn btn-primary mb-3" onclick="submitContent()">Process Output</button>
+
+        <!-- Second Output Large Text Area -->
+        <div class="form-group">
+            <label for="outputText2">Output Text 2</label>
+            <textarea class="form-control" id="outputText2" rows="5" readonly></textarea>
+        </div>
+
+        <!-- Additional Output Details -->
+        <div class="form-group">
+            <label for="detail1">Detail 1</label>
+            <input type="text" class="form-control" id="detail1" readonly>
+        </div>
+        <div class="form-group">
+            <label for="detail2">Detail 2</label>
+            <input type="text" class="form-control" id="detail2" readonly>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+        function submitIdea() {
+            // Get the input text from the input field
+            var inputText = document.getElementById("inputText").value;
+            // Get the output text from the input field
+            var outputText = document.getElementById("outputInputText").value;
+        }
+
+        function submitContent() {
+            // Get the input text from the input field
+            var inputText = document.getElementById("inputText").value;
+            // Get the output text from the input field
+            var outputText = document.getElementById("outputInputText").value;
+        }
+
+    </script>    
+</body>
+</html>
