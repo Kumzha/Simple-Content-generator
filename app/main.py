@@ -1,14 +1,32 @@
-from fastapi import FastAPI, BackgroundTasks, HTTPException, Request, Depends
-from fastapi.responses import HTMLResponse
-from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
+from fastapi import FastAPI, Request, Depends
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+from sqlalchemy.orm import Session
+from database import engine, SessionLocal
+from starlette.concurrency import run_in_threadpool
+
+import models, crud, database, utils, schemas
+
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
 
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request):
-    print("read_root")
     return templates.TemplateResponse("index.html", {"request": request})
+
+
+@app.post("/generate/")
+async def generate_content(payLoad: schemas.GeneratePayload, db: Session = Depends(get_db)):
+    generated_text = await run_in_threadpool(utils.generate_content, db, payLoad.topic)
